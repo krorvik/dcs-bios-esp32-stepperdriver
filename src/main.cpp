@@ -11,6 +11,9 @@
 
 // Static setup
 // NodeMCU 32s: Fixed pins on PCB, 9 steppers possible:
+// Full pinout for ref, STEPPERCOUNT = 9
+// const int step_pins[STEPPERCOUNT] = { 32, 25, 27, 12, 21, 18, 17, 4, 2  };
+// const int dir_pins[STEPPERCOUNT] =  { 33, 26, 14, 13, 19,  5, 16, 0, 15 };
 const int step_pins[STEPPERCOUNT] = { 32, 25, 27, 12, 21, 18 };
 const int dir_pins[STEPPERCOUNT] =  { 33, 26, 14, 13, 19,  5 };
 const int encoder_pins[2] = { 39, 34 };
@@ -35,30 +38,8 @@ unsigned int adjust_selector = 0; // Can be 0-8, but we take modulo later for si
 FastAccelStepperEngine stepper_engine = FastAccelStepperEngine();
 ESPRotary setEncoder(encoder_pins[0], encoder_pins[1]);
 Button2 select_button(switch_pin);
-// For indexed access to steppers. Comment those not needed.
-FastAccelStepper *stepper1 = NULL;
-FastAccelStepper *stepper2 = NULL;
-FastAccelStepper *stepper3 = NULL;
-FastAccelStepper *stepper4 = NULL;
-FastAccelStepper *stepper5 = NULL;
-FastAccelStepper *stepper6 = NULL;
-/*
-FastAccelStepper *stepper7 = NULL;
-FastAccelStepper *stepper8 = NULL;
-FastAccelStepper *stepper9 = NULL;
-*/
-FastAccelStepper *all_steppers[STEPPERCOUNT] = { 
-  stepper1, 
-  stepper2, 
-  stepper3, 
-  stepper4, 
-  stepper5, 
-  stepper6 /*,
-  stepper7,
-  stepper8,
-  stepper9,*/
-};
-
+FastAccelStepper *all_steppers[STEPPERCOUNT] = { NULL,NULL,NULL,NULL,NULL,NULL };
+  
 // called by switch callback
 void selector_clickhandler(Button2 &button) {  
   adjust_selector += 1;
