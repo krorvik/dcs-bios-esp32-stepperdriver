@@ -1,6 +1,6 @@
 # ESP32 stepper motor driver for DCS bios
 
-This is an ESP32 based stepper motor driver for DCS BIOS. 
+This is an ESP32 based stepper motor driver for DCS BIOS, with PlatformIO setup. 
 
 It was born out of a need to drive many steppers from as few controllers as possible, using the FastAccelStepper library:
 https://github.com/gin66/FastAccelStepper
